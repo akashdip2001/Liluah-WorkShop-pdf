@@ -3,33 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Page</title>
+    <title>Fullscreen Countdown Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
+            overflow: hidden;
         }
         .container {
-            text-align: center;
-            width: 90%;
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         #countdown {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             font-size: 2em;
-            margin: 20px 0;
             color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
         }
         #stayButton {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
             padding: 10px 20px;
             font-size: 1em;
             cursor: pointer;
@@ -42,33 +50,47 @@
         #stayButton:hover {
             background-color: #0056b3;
         }
-        iframe {
-            width: 100%;
-            height: 300px;
+        #viewPdfButton {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: rgba(0, 123, 255, 0.5);
+            color: white;
             border: none;
-            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+            transition: opacity 0.5s, background-color 0.3s;
         }
-        @media (min-width: 768px) {
-            iframe {
-                height: 500px;
+        #viewPdfButton:hover {
+            background-color: rgba(0, 86, 179, 0.5);
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="content">
-            <iframe id="initialFrame" src="https://akashdip2001.github.io/website-2/"></iframe>
-            <div id="countdown">3</div>
-            <button id="stayButton">Stay this page</button>
-        </div>
+        <iframe id="initialFrame" src="https://akashdip2001.github.io/website-2/"></iframe>
+        <div id="countdown">3</div>
+        <button id="stayButton">Stay this page</button>
+        <button id="viewPdfButton" class="fade-in">View PDF</button>
     </div>
     
     <script>
         let countdown = 3;
         const countdownElement = document.getElementById('countdown');
         const stayButton = document.getElementById('stayButton');
-        const initialFrame = document.getElementById('initialFrame');
+        const viewPdfButton = document.getElementById('viewPdfButton');
         let countdownInterval;
 
         function startCountdown() {
@@ -86,7 +108,14 @@
         stayButton.addEventListener('click', () => {
             clearInterval(countdownInterval);
             countdownElement.textContent = "You chose to stay!";
-            initialFrame.src = 'https://akashdip2001.github.io/website-2/';
+            stayButton.style.display = 'none';
+            setTimeout(() => {
+                viewPdfButton.style.display = 'block';
+            }, 3000);
+        });
+
+        viewPdfButton.addEventListener('click', () => {
+            window.location.href = 'https://akashdip2001.github.io/custom-html5-pdf-viewer/';
         });
 
         window.onload = startCountdown;
