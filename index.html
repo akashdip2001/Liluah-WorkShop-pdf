@@ -1,15 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirecting...</title>
-<script>
-    window.onload = function() {
-        window.location.href = "next.html";
-    };
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        #countdown {
+            font-size: 2em;
+            margin: 20px 0;
+            color: #333;
+        }
+        #stayButton {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        #stayButton:hover {
+            background-color: #0056b3;
+        }
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            margin-top: 20px;
+        }
+        @media (min-width: 768px) {
+            iframe {
+                height: 500px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div id="content">
+            <iframe id="initialFrame" src="https://akashdip2001.github.io/website-2/"></iframe>
+            <div id="countdown">3</div>
+            <button id="stayButton">Stay this page</button>
+        </div>
+    </div>
+    
+    <script>
+        let countdown = 3;
+        const countdownElement = document.getElementById('countdown');
+        const stayButton = document.getElementById('stayButton');
+        const initialFrame = document.getElementById('initialFrame');
+        let countdownInterval;
+
+        function startCountdown() {
+            countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'https://akashdip2001.github.io/custom-html5-pdf-viewer/';
+                }
+            }, 1000);
+        }
+
+        stayButton.addEventListener('click', () => {
+            clearInterval(countdownInterval);
+            countdownElement.textContent = "You chose to stay!";
+            initialFrame.src = 'https://akashdip2001.github.io/website-2/';
+        });
+
+        window.onload = startCountdown;
+    </script>
 </body>
 </html>
