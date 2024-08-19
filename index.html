@@ -1,138 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Summer Training Report, Liluah</title>
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      #countdown {
+        position: absolute;
+        bottom: 77px;
+        left: 215px;
+        font-size: 11.5em;
+        color: #333;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+      }
+      #note {
+        position: absolute;
+        bottom: 16px;
+        left: 24px;
+        font-size: 3.5em;
+        color: #333;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+      }
+      #stayButton {
+        position: absolute;
+        bottom: 31px;
+        left: 195px;
+        padding: 10px 20px;
+        font-size: 1.1em;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        transition: background-color 0.3s;
+      }
+      #stayButton:hover {
+        background-color: #0056b3;
+      }
+      #viewPdfButton {
+        position: absolute;
+        bottom: 20px;
+        left: 236px;
+        padding: 10px 20px;
+        font-size: 1em;
+        cursor: pointer;
+        background-color: rgba(0, 123, 255, 0.5);
+        color: white;
+        border: none;
+        border-radius: 25px;
+        display: none;
+        transition: opacity 0.5s, background-color 0.3s;
+      }
+      #viewPdfButton:hover {
+        background-color: rgba(0, 86, 179, 0.5);
+      }
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
         }
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        #countdown {
-            position: absolute;
-            bottom: 77px;
-            left: 215px;
-            font-size: 11.5em;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px;
-            border-radius: 5px;
-        }
-        #note {
-            position: absolute;
-            bottom: 16px;
-            left: 24px;
-            font-size: 3.5em;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-        }
-        #stayButton {
-            position: absolute;
-            bottom: 31px;
-            left: 195px;
-            padding: 10px 20px;
-            font-size: 1.1em;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            transition: background-color 0.3s;
-        }
-        #stayButton:hover {
-            background-color: #0056b3;
-        }
-        #viewPdfButton {
-            position: absolute;
-            bottom: 20px;
-            left: 236px;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            background-color: rgba(0, 123, 255, 0.5);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            display: none;
-            transition: opacity 0.5s, background-color 0.3s;
-        }
-        #viewPdfButton:hover {
-            background-color: rgba(0, 86, 179, 0.5);
-        }
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <iframe id="initialFrame" src="https://akashdip2001.github.io/website-2/"></iframe>
-        <div id="countdown">3</div>
-        <div id="note">You chose to stay!</div>
-        <button id="stayButton">Stay this page</button>
-        <button id="viewPdfButton" class="fade-in">View PDF</button>
+      <iframe
+        id="initialFrame"
+        src="https://akashdip2001.github.io/website-2/"
+      ></iframe>
+      <div id="countdown">3</div>
+      <div id="note">You chose to stay!</div>
+      <button id="stayButton">Stay this page</button>
+      <button id="viewPdfButton" class="fade-in">View PDF</button>
     </div>
-    
+
     <script>
-        let countdown = 3;
-        const countdownElement = document.getElementById('countdown');
-        const stayButton = document.getElementById('stayButton');
-        const viewPdfButton = document.getElementById('viewPdfButton');
-        const noteElement = document.getElementById('note');
-        let countdownInterval;
+      let countdown = 3;
+      const countdownElement = document.getElementById("countdown");
+      const stayButton = document.getElementById("stayButton");
+      const viewPdfButton = document.getElementById("viewPdfButton");
+      const noteElement = document.getElementById("note");
+      let countdownInterval;
 
-        function startCountdown() {
-            countdownInterval = setInterval(() => {
-                countdown--;
-                countdownElement.textContent = countdown;
+      function startCountdown() {
+        countdownInterval = setInterval(() => {
+          countdown--;
+          countdownElement.textContent = countdown;
 
-                if (countdown <= 0) {
-                    clearInterval(countdownInterval);
-                    window.location.href = 'https://akashdip2001.github.io/custom-html5-pdf-viewer/';
-                }
-            }, 1000);
-        }
-
-        stayButton.addEventListener('click', () => {
+          if (countdown <= 0) {
             clearInterval(countdownInterval);
-            countdownElement.style.display = 'none';
-            noteElement.style.display = 'block';
-            stayButton.style.display = 'none';
-            setTimeout(() => {
-                noteElement.style.display = 'none';
-                viewPdfButton.style.display = 'block';
-            }, 3000);
-        });
+            window.location.href = "index_pdf.html";
+          }
+        }, 1000);
+      }
 
-        viewPdfButton.addEventListener('click', () => {
-            window.location.href = 'https://akashdip2001.github.io/custom-html5-pdf-viewer/';
-        });
+      stayButton.addEventListener("click", () => {
+        clearInterval(countdownInterval);
+        countdownElement.style.display = "none";
+        noteElement.style.display = "block";
+        stayButton.style.display = "none";
+        setTimeout(() => {
+          noteElement.style.display = "none";
+          viewPdfButton.style.display = "block";
+        }, 3000);
+      });
 
-        window.onload = startCountdown;
+      viewPdfButton.addEventListener("click", () => {
+        window.location.href =
+          "https://akashdip2001.github.io/custom-html5-pdf-viewer/";
+      });
+
+      window.onload = startCountdown;
     </script>
-</body>
+  </body>
 </html>
