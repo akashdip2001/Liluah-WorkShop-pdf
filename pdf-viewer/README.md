@@ -1,3 +1,6 @@
+| [Pdf - Repo](https://github.com/akashdip2001/custom-html5-pdf-viewer) |
+|---|
+
 # Custom HTML5 PDF Viewer (Mobile Compatible)
 
 This is the testing code of mobile browser compatible PDF viewer which is coded with HTML5, CSS3 and JavaScript. In mobile, there are no browser compatibility to preview a PDF file. So when a PDF file link is given on any anchor tag (`<a>`) or page redirected to any PDF file URL, then it will force PDF to download and save a copy on memory to read it with any PDF viewer. As solution of this issuie, here are some testing files which made using [Mozilla's PDF.js](https://github.com/mozilla/pdf.js)
